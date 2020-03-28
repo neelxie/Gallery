@@ -1,15 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import saveTicket from "./redux/actions/TicketAction";
-import Header from "../Header";
-import LandingFooter from "../LandingFooter";
-import InputText from "../InputText";
-import InputPassword from "../InputPassword";
-import PrimaryButton from "../PrimaryButton";
-import Spinner from "../SpinnerComponent";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL } from "./config";
 import "./TicketForm.css";
 
 class TicketForm extends React.Component {
@@ -42,6 +36,7 @@ class TicketForm extends React.Component {
 //   }
 
   handleSubmit() {
+    // preventDefault();
     const { firstname, lastname, email, kidsTickets, adultTickets } = this.state;
     const { saveTicket } = this.props;
 
@@ -52,7 +47,8 @@ class TicketForm extends React.Component {
       "kids_tickets": kidsTickets,
       "adult_tickets": adultTickets
     };
-
+    console.log("......")
+    console.log(ticketDetails)
     axios
       .post(`${API_BASE_URL}/ticket`, ticketDetails)
       .then((res) => {
@@ -64,20 +60,21 @@ class TicketForm extends React.Component {
             // redirect to dashboard
             // save ticket data to store
           saveTicket(res.data.data);
-          this.setState(
-            {
-                feedbackMessage: "Ticket Successful"
-            },
-            () => {
-                window.location.href = `/payment`;
-            }
-            );
+        //   this.setState(
+        //     {
+        //         feedbackMessage: "Ticket Successful"
+        //     },
+        //     () => {
+        //         window.location.href = `/payment`;
+        //     }
+        //     );
           }
         })
       .catch(err => {
           this.setState({
             error: "Details"
         });
+        console.log("An error occured")
         });
   }
 
@@ -86,67 +83,79 @@ class TicketForm extends React.Component {
 
     return (
       <div className="TicketFormContainer">
-        <Header />
-        <form className="form-detail" id="myform" onSubmit={this.handleSubmit}>
-            <input
-                className="InputText"
-                type="text"
-                placeholder="First Name"
-                name="firstname"
-                value={firstname}
-                required="required"
-                onChange={e => {
-                    this.onChange(e);
-                }}
-            />
-            <input
-                className="InputText"
-                type="text"
-                placeholder="Last Name"
-                name="lastname"
-                value={lastname}
-                required="required"
-                onChange={e => {
-                    this.onChange(e);
-                }}
-            />
-            <input
-                type="email"
-                className="input-text"
-                name="email"
-                id="email"
-                placeholder="Email"
-                value={email}
-                required="required"
-                onChange={e => {
-                    this.onChange(e);
-                }}
-            />
-            <input
-                className="InputText"
-                type="number"
-                placeholder="Kids Ticket"
-                min="1"
-                max="10"
-                name="kidsTickets"
-                value={kidsTickets}
-                onChange={e => {
-                props.onChange(e);
-                }}
-            />
-            <input
-                className="InputText"
-                type="number"
-                placeholder="Adult Tickets"
-                min="1"
-                max="10"
-                name="adultTickets"
-                value={adultTickets}
-                onChange={e => {
-                props.onChange(e);
-                }}
-            />
-        </form>
+        <div className="ChenaImage"></div>
+        <div className="FormContain">
+            <form className="form-detail" id="myform">
+                <legend><h1>Get Early Bird Tickets.</h1></legend>
+
+                <input
+                    className="InputText"
+                    type="text"
+                    placeholder="First Name"
+                    name="firstname"
+                    value={firstname}
+                    required="required"
+                    onChange={e => {
+                        this.handleChange(e);
+                    }}
+                />
+                <input
+                    className="InputText"
+                    type="text"
+                    placeholder="Last Name"
+                    name="lastname"
+                    value={lastname}
+                    required="required"
+                    onChange={e => {
+                        this.handleChange(e);
+                    }}
+                />
+                <input
+                    type="email"
+                    className="InputText"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    value={email}
+                    required="required"
+                    onChange={e => {
+                        this.handleChange(e);
+                    }}
+                />
+                <label>Kids Tickets: </label>
+                <input
+                    className="InputText"
+                    type="number"
+                    placeholder="Kids Ticket"
+                    min="1"
+                    max="10"
+                    name="kidsTickets"
+                    value={kidsTickets}
+                    onChange={e => {
+                    this.handleChange(e);
+                    }}
+                />
+                <label>Adult Tickets: </label>
+                <input
+                    className="InputText"
+                    type="number"
+                    placeholder="Adult Tickets"
+                    min="1"
+                    max="10"
+                    name="adultTickets"
+                    value={adultTickets}
+                    onChange={e => {
+                    this.handleChange(e);
+                    }}
+                />
+                <button
+                    className="MyButton"
+                    onClick={this.handleSubmit}
+                >
+                GET TICKET
+                </button>
+            </form>
+        </div>
       </div>
     );
   }

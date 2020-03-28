@@ -1,0 +1,56 @@
+.ChenaImage{
+    background: url("./img/chenaimage.png") no-repeat center;
+    background-size: cover;
+    /* object-fit: cover; */
+    height: 450px;
+    width: 100%;
+}
+.jumbotron{
+    background-color: #e9ecef;
+    text-align: center!important;
+    padding: 4rem 2rem;
+}
+.display-3{
+    font-weight: 4.5rem;
+    font-size: 300;
+    line-height: 1.2;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.lead{
+    font-size: 1.23rem;
+    font-weight: 300;
+}
+p{
+    margin-bottom: 1rem;
+    display: block;
+    margin-block-end: 0px;
+    margin-block-start: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    text-align: center!important;
+}
+a{
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+.btn-primary{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    transition: color .15s;
+    padding: 8px;
+}
+
+table{
+    margin: 0 auto;
+}
+th{
+    text-align: left;
+}

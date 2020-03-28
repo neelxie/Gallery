@@ -14,63 +14,57 @@ import './Landing.css';
 class Landing extends React.Component {
 
   render() {
-    const { jobs, isRetrieving } = this.props;
+    const { data } = this.props;
 
     return (
       <div>
-        <Header />
-        <div className="MainSection">
-          <div className="SiteSideNav">
-            <SideNav clusterName={clusterName} clusterId={this.props.match.params.clusterID} />
-          </div>
-          <div className="Content">
-            <div className="UpperBar">
-              <InformationBar header="Jobs" showBtn={false} />
-            </div>
-            <div className="LowerBar">
-              <div className="ResourcesTable">
+        <div className="ChenaImage"></div>
+        <div className="jumbotron">
+            <h1 className="display-3">Thank You!</h1>
+            <div className="Table">
                 <table>
                   <tr>
-                    <th>Name</th>
-                    <th>Duration</th>
-                    <th>Status</th>
-                    <th>Age</th>
+                    <th>First Name</th>
+                    <td>{}</td>
                   </tr>
-                  {
-                    isRetrieving ? (
-                      <tr className="TableLoading">
-                        <div className="SpinnerWrapper">
-                          <BigSpinner />
-                        </div>
-                      </tr>
-                    ) : (
-                      <tbody>
-                        {
-                          jobs.length !== 0 ? (
-                            jobs.map((job) => (
-                              <tr>
-                                <td>{job.metadata.name}</td>
-                                <td>{`${Math.floor((Date.parse(job.status.completionTime) - Date.parse(job.status.startTime)) / 1000)} seconds`}</td>
-                                <td><Status status={job.status.succeeded} /></td>
-                                <td>{tellAge(job.metadata.creationTimestamp)}</td>
-                              </tr>
-                            )))
-                            : (
-                              <tr>
-                                <div className="EmptyList">
-                                  <h3>No Jobs Available</h3>
-                                </div>
-                              </tr>
-                            )
-                        }
-                      </tbody>
-                    )
-                  }
+                  <tr>
+                    <th>Last Name</th>
+                    <td>{}</td>
+                  </tr>
+                  <tr>
+                    <th>Email</th>
+                    <td>{}</td>
+                  </tr>
+                  <tr>
+                    <th>Kids Tickets</th>
+                    <td>{}</td>
+                  </tr>
+                  <tr>
+                    <th>Adult Tickets</th>
+                    <td>{}</td>
+                  </tr>
+                  <tr>
+                    <th>Number of Tickets</th>
+                    <td>{}</td>
+                  </tr>
+                  <tr>
+                    <th>Amount to be paid</th>
+                    <td>{}</td>
+                  </tr>
+                  <tr>
+                    <th>Reference Number</th>
+                    <td>{}</td>
+                  </tr>
                 </table>
-
-              </div>
             </div>
-          </div>
+            <p className="lead">Note your <strong>reference number and amount</strong> and proceed to the Zazu page to effect payment.</p>
+            <hr/>
+            <p>
+              Having trouble? <a href="">Contact us</a>
+            </p>
+            <p className="lead">
+              <a className="btn btn-primary btn-sm" href="https://bootstrapcreative.com/" role="button">Continue to Zazu</a>
+            </p>
         </div>
       </div>
     );

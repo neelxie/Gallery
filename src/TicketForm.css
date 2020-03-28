@@ -1,0 +1,76 @@
+.ChenaImage{
+    background: url("./img/chenaimage.png") no-repeat center;
+    background-size: cover;
+    /* object-fit: cover; */
+    height: 450px;
+    width: 100%;
+}
+
+.FormContain{
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding-bottom: 5%;
+}
+
+.InputText{
+    width: 25rem;
+    border: 2px solid black;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: black;
+    font-size: inherit;
+    padding: 1rem;
+    margin : 0 auto;
+}
+
+.InputText::placeholder {
+    color: black;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    background: #fff;
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 4%;
+}
+legend{
+    margin : 0 auto;
+    font-family: sans-serif;
+}
+
+button {
+    background-color: #F7B21F;
+    width: 355px;
+    height: 50px;
+    color: white;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    line-height: 19px;
+    text-align: center;
+    border: none;
+    outline: 2px solid #F7B21F;
+    margin: 0 auto;
+}
+  
+button:hover{
+    background-color: transparent;
+    color: #F7B21F;
+    outline: 2px solid #F7B21F;
+}
+
+label {
+    width: 25rem;
+    background-color: transparent;
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+    /* padding: 1rem; */
+    margin : 0 auto;
+    padding-left: 5px;
+}
