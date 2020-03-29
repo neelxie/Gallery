@@ -50,7 +50,15 @@ a{
 
 table{
     margin: 0 auto;
+    width: 80%;
+    border: 1px solid blue;
 }
-th{
+th, td{
     text-align: left;
+    /* border: 1px solid #2339ff; */
+    width: 50%;
+    padding-left: 1%;
+}
+tr{
+    border: 1px solid #2339ff;
 }

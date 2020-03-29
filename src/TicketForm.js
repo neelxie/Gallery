@@ -15,12 +15,17 @@ class TicketForm extends React.Component {
       email: "",
       error:"",
       kidsTickets: 0,
-      adultTickets: 0
+      adultTickets: 0,
+      data:[]
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.validateEmail = this.validateEmail.bind(this);
+  }
+
+  componentDidMount() {
+    localStorage.removeItem('ticket');
   }
 
   handleChange(e) {
@@ -51,17 +56,29 @@ class TicketForm extends React.Component {
     axios
       .post(`${API_BASE_URL}/ticket`, ticketDetails)
       .then((res) => {
-        // console.log(res)
+        console.log(res.data.user_details);
+        localStorage.setItem('firstname', res.data.user_details.firstname);
+        localStorage.setItem('lastname', res.data.user_details.lastname);
+        localStorage.setItem('email', res.data.user_details.email);
+        localStorage.setItem('kidsTickets', res.data.user_details.kids_tickets);
+        localStorage.setItem('adultTickets', res.data.user_details.adult_tickets);
+        localStorage.setItem('timeSigned', res.data.user_details.created_on);
+        localStorage.setItem('numOfTickets', res.data.user_details.total_tickets);
+        localStorage.setItem('amount', res.data.user_details.amount);
+        localStorage.setItem('basket', res.data.user_details.basket_reference);
+        this.setState({
+            data: res.data.user_details
+        });
         if (res.data.success === 'true') {
           this.setState({
             loading: false
           });
-
             // redirect to dashboard
             // save ticket data to store
-          saveTicket(res.data.data);
-          window.location = '/payment'; 
-          }
+        saveTicket(res.data.user_details);
+        //   this.props.history.push('/payment');
+        }
+        this.props.history.push('/payment');
         })
       .catch(err => {
           this.setState({
@@ -154,9 +171,10 @@ class TicketForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  ticket: state.TicketReducer
-});
+const mapStateToProps = (state) => {
+  const { data } = state.ticket;
+  return { data };
+};
 
 const mapDispatchToProps = {
   saveTicket
