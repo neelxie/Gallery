@@ -35,8 +35,8 @@ class TicketForm extends React.Component {
 //     return emailRegEx.test(String(email).toLowerCase());
 //   }
 
-  handleSubmit() {
-    // preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
     const { firstname, lastname, email, kidsTickets, adultTickets } = this.state;
     const { saveTicket } = this.props;
 
@@ -47,11 +47,11 @@ class TicketForm extends React.Component {
       "kids_tickets": kidsTickets,
       "adult_tickets": adultTickets
     };
-    console.log("......")
-    console.log(ticketDetails)
+
     axios
       .post(`${API_BASE_URL}/ticket`, ticketDetails)
       .then((res) => {
+        // console.log(res)
         if (res.data.success === 'true') {
           this.setState({
             loading: false
@@ -60,14 +60,7 @@ class TicketForm extends React.Component {
             // redirect to dashboard
             // save ticket data to store
           saveTicket(res.data.data);
-        //   this.setState(
-        //     {
-        //         feedbackMessage: "Ticket Successful"
-        //     },
-        //     () => {
-        //         window.location.href = `/payment`;
-        //     }
-        //     );
+          window.location = '/payment'; 
           }
         })
       .catch(err => {
@@ -79,13 +72,13 @@ class TicketForm extends React.Component {
   }
 
   render() {
-    const { error, firstname, lastname, email, kidsTickets, adultTickets } = this.state;
+    const { firstname, lastname, email, kidsTickets, adultTickets } = this.state;
 
     return (
       <div className="TicketFormContainer">
         <div className="ChenaImage"></div>
         <div className="FormContain">
-            <form className="form-detail" id="myform">
+            <form className="form-detail" id="myform" onSubmit={this.handleSubmit}>
                 <legend><h1>Get Early Bird Tickets.</h1></legend>
 
                 <input
@@ -127,7 +120,7 @@ class TicketForm extends React.Component {
                     className="InputText"
                     type="number"
                     placeholder="Kids Ticket"
-                    min="1"
+                    min="0"
                     max="10"
                     name="kidsTickets"
                     value={kidsTickets}
@@ -140,7 +133,7 @@ class TicketForm extends React.Component {
                     className="InputText"
                     type="number"
                     placeholder="Adult Tickets"
-                    min="1"
+                    min="0"
                     max="10"
                     name="adultTickets"
                     value={adultTickets}
@@ -150,7 +143,7 @@ class TicketForm extends React.Component {
                 />
                 <button
                     className="MyButton"
-                    onClick={this.handleSubmit}
+
                 >
                 GET TICKET
                 </button>

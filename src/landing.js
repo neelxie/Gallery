@@ -15,6 +15,7 @@ class Landing extends React.Component {
 
   render() {
     const { data } = this.props;
+    console.log(this.props);
 
     return (
       <div>
@@ -76,7 +77,7 @@ Landing.propTypes = {
 };
 
 export const mapStateToProps = (state) => {
-  const { data } = state.TicketReducer;
+  const { data } = state.ticket;
   return { data };
 };
 
