@@ -13,6 +13,7 @@ class TicketForm extends React.Component {
       firstname:"",
       lastname:"",
       email: "",
+      phoneNumber: "",
       error:"",
       kidsTickets: 0,
       adultTickets: 0,
@@ -25,7 +26,15 @@ class TicketForm extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.removeItem('ticket');
+    localStorage.removeItem('firstname');
+    localStorage.removeItem('lastname');
+    localStorage.removeItem('email');
+    localStorage.removeItem('kidsTickets');
+    localStorage.removeItem('adultTickets');
+    localStorage.removeItem('numOfTickets');
+    localStorage.removeItem('amount');
+    localStorage.removeItem('basket');
+    localStorage.removeItem('timeSigned');
   }
 
   handleChange(e) {
@@ -42,12 +51,13 @@ class TicketForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { firstname, lastname, email, kidsTickets, adultTickets } = this.state;
+    const { firstname, lastname, email, phoneNumber, kidsTickets, adultTickets } = this.state;
     const { saveTicket } = this.props;
 
     const ticketDetails = {
       "firstname": firstname,
-      "lastname": lastname,  
+      "lastname": lastname,
+      "phone": phoneNumber,
       "email": email,
       "kids_tickets": kidsTickets,
       "adult_tickets": adultTickets
@@ -60,6 +70,7 @@ class TicketForm extends React.Component {
         localStorage.setItem('firstname', res.data.user_details.firstname);
         localStorage.setItem('lastname', res.data.user_details.lastname);
         localStorage.setItem('email', res.data.user_details.email);
+        localStorage.setItem('phone', res.data.user_details.phone);
         localStorage.setItem('kidsTickets', res.data.user_details.kids_tickets);
         localStorage.setItem('adultTickets', res.data.user_details.adult_tickets);
         localStorage.setItem('timeSigned', res.data.user_details.created_on);
@@ -127,6 +138,18 @@ class TicketForm extends React.Component {
                     id="email"
                     placeholder="Email"
                     value={email}
+                    required="required"
+                    onChange={e => {
+                        this.handleChange(e);
+                    }}
+                />
+                <input
+                    type="number"
+                    className="InputText"
+                    name="phoneNumber"
+                    id="phoneNumber"
+                    placeholder="Phone Number"
+                    value={phoneNumber}
                     required="required"
                     onChange={e => {
                         this.handleChange(e);

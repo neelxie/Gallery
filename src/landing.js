@@ -1,32 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import './Landing.css';
-// import Header from '../Header';
-// import InformationBar from '../InformationBar';
-// import SideNav from '../SideNav';
-// import getJobs from '../../redux/actions/JobsActions';
-// import Status from '../Status';
-// import { BigSpinner } from '../SpinnerComponent';
-// import tellAge from '../../helpers/ageUtility';
 
 class Landing extends React.Component {
 
   render() {
     const { data } = this.props;
-    console.log(this.props);
-    console.log(this.state);
-    const myTicket = localStorage.getItem('ticket');
-    console.log(myTicket);
-    // localStorage.setItem('firstname', res.data.user_details);
-    // localStorage.setItem('lastname', res.data.user_details);
-    // localStorage.setItem('email', res.data.user_details);
-    // localStorage.setItem('kidsTickets', res.data.user_details);
-    // localStorage.setItem('adultTickets', res.data.user_details);
-    // localStorage.setItem('timeSigned', res.data.user_details);
-    // localStorage.setItem('numOfTickets', res.data.user_details);
-    // localStorage.setItem('amount', res.data.user_details);
+    
     return (
       <div>
         <div className="ChenaImage"></div>
@@ -48,6 +28,10 @@ class Landing extends React.Component {
                         <td>{localStorage.getItem('email')}</td>
                     </tr>
                     <tr>
+                        <th>Phone Number:</th>
+                        <td>{localStorage.getItem('phone')}</td>
+                    </tr>
+                    <tr>
                         <th>Kids Tickets:</th>
                         <td>{localStorage.getItem('kidsTickets')}</td>
                     </tr>
@@ -61,7 +45,7 @@ class Landing extends React.Component {
                     </tr>
                     <tr>
                         <th>Amount to be paid:</th>
-                        <td>{localStorage.getItem('amount')}</td>
+                        <td>K{localStorage.getItem('amount')}</td>
                     </tr>
                     <tr>
                         <th>Reference Number:</th>
@@ -92,10 +76,6 @@ export const mapStateToProps = (state) => {
   const { data } = state.ticket;
   return { data };
 };
-
-// export const mapDispatchToProps = (dispatch) => bindActionCreators({
-//   getJobs
-// }, dispatch);
 
 export default connect(
   mapStateToProps,
