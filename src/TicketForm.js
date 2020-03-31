@@ -100,7 +100,7 @@ class TicketForm extends React.Component {
   }
 
   render() {
-    const { firstname, lastname, email, kidsTickets, adultTickets } = this.state;
+    const { firstname, lastname, email, phoneNumber, kidsTickets, adultTickets } = this.state;
 
     return (
       <div className="TicketFormContainer">
