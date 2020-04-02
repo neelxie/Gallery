@@ -1,1 +1,1 @@
-export const API_BASE_URL = 'http://digital-chena-gallery.herokuapp.com';
+export const API_BASE_URL = 'https://digital-chena-gallery.herokuapp.com';
