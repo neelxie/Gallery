@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import saveTicket from "./redux/actions/TicketAction";
 import { API_BASE_URL } from "./config";
+import Spinner from './Spinner';
 import "./TicketForm.css";
 
 class TicketForm extends React.Component {
@@ -14,6 +15,7 @@ class TicketForm extends React.Component {
       lastname:"",
       email: "",
       phoneNumber: "",
+      loading: false,
       error:"",
       kidsTickets: 0,
       adultTickets: 0,
@@ -29,6 +31,7 @@ class TicketForm extends React.Component {
     localStorage.removeItem('firstname');
     localStorage.removeItem('lastname');
     localStorage.removeItem('email');
+    localStorage.removeItem('phone');
     localStorage.removeItem('kidsTickets');
     localStorage.removeItem('adultTickets');
     localStorage.removeItem('numOfTickets');
@@ -63,6 +66,10 @@ class TicketForm extends React.Component {
       "adult_tickets": adultTickets
     };
 
+    this.setState({
+      loading: true
+    });
+
     axios
       .post(`${API_BASE_URL}/ticket`, ticketDetails)
       .then((res) => {
@@ -93,14 +100,15 @@ class TicketForm extends React.Component {
         })
       .catch(err => {
           this.setState({
-            error: "Details"
+            error: "Details",
+            loading: false
         });
         console.log("An error occured")
         });
   }
 
   render() {
-    const { firstname, lastname, email, phoneNumber, kidsTickets, adultTickets } = this.state;
+    const { loading, firstname, lastname, email, phoneNumber, kidsTickets, adultTickets } = this.state;
 
     return (
       <div className="TicketFormContainer">
@@ -183,9 +191,10 @@ class TicketForm extends React.Component {
                 />
                 <button
                     className="MyButton"
+                    // label={loading ? <Spinner /> : 'login'}
 
                 >
-                GET TICKET
+                {loading ? <Spinner /> : 'GET TICKET'}
                 </button>
             </form>
         </div>
