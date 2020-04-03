@@ -45,11 +45,11 @@ class Landing extends React.Component {
                     </tr>
                     <tr>
                         <th>Amount to be paid:</th>
-                        <td>K{localStorage.getItem('amount')}</td>
+                        <td className="amount">K{localStorage.getItem('amount')}</td>
                     </tr>
                     <tr>
                         <th>Reference Number:</th>
-                        <td>{localStorage.getItem('basket')}</td>
+                        <td className="reference"><strong>{localStorage.getItem('basket')}</strong></td>
                     </tr>
                     <tr>
                         <th>Time signed up:</th>
