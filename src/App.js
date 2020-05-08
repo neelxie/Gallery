@@ -4,7 +4,6 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-// import store from './store';
 import Landing from './landing';
 import TicketForm from './TicketForm';
 
