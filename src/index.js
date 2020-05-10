@@ -6,7 +6,6 @@ import { saveState } from './localStorage';
 import Routes from './App';
 import './index.css';
 
-// update localstorage whenever state changes
 store.subscribe(() => {
   saveState(store.getState());
 });
